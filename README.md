@@ -1,2 +1,1 @@
-# YellowSun_Weather_AOS
-AOS_Weather_App
+# Yellow_Sun_Weather_App
