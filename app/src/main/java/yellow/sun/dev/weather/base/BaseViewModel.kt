@@ -3,9 +3,8 @@ package yellow.sun.dev.weather.base
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import org.koin.core.component.KoinComponent
 
-abstract class BaseViewModel: ViewModel(), KoinComponent {
+abstract class BaseViewModel: ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 

@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/WorkSpace/chan/YellowSun_Weather_AOS/app/src/main/res/layout/activity_main.xml" value="0.5536458333333333" />
+        <entry key="..\:/WorkSpace/chan/YellowSun_Weather_AOS/app/src/main/res/layout/fragment_weather.xml" value="0.4534188034188034" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/loading.xml" value="0.37604166666666666" />
       </map>

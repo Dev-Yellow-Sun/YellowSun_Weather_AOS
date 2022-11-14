@@ -68,7 +68,7 @@ abstract class BaseActivity<B: ViewDataBinding>: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = bind(layoutId)
-//        binding.lifecycleOwner = this
+        binding.lifecycleOwner = this
         binding.setOnEvents()
 
         loadingBinding = bindView(R.layout.loading)
