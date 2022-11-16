@@ -5,6 +5,7 @@ import android.content.Context
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
+import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import okhttp3.internal.platform.Platform
@@ -59,6 +60,7 @@ object NetworkModule {
 
             okHttpClientBuilder
                 .addInterceptor(httpLoggingInterceptor)
+                .addInterceptor(OkHttpProfilerInterceptor())    // OkHttp Profiler
                 .addNetworkInterceptor(StethoInterceptor()) // Stetho 로그
         }
 

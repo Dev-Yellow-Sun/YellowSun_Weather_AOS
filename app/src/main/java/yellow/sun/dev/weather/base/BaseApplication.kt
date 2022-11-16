@@ -4,13 +4,14 @@ import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
-import yellow.sun.dev.weather.module.apiModule
-import yellow.sun.dev.weather.module.viewModelModule
+import yellow.sun.dev.weather.module.*
 
 class BaseApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        NetworkModule.context = this
 
         // Koin
         startKoin {
@@ -18,7 +19,10 @@ class BaseApplication: Application() {
             androidContext(this@BaseApplication)
             modules(
                 apiModule,
-                viewModelModule
+                viewModelModule,
+                databaseModule,
+                repositoryModule,
+                activityModule
             )
         }
     }

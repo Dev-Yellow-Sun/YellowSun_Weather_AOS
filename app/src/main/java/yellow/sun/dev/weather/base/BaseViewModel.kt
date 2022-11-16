@@ -12,7 +12,8 @@ abstract class BaseViewModel: ViewModel(), KoinComponent {
     fun addDisposable(disposable: Disposable) = compositeDisposable.add(disposable)
 
     override fun onCleared() {
-        super.onCleared()
         compositeDisposable.clear()
+        super.onCleared()
+
     }
 }
