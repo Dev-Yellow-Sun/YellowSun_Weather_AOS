@@ -1,5 +1,6 @@
 package yellow.sun.dev.weather.ui.activity
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import yellow.sun.dev.weather.R
@@ -7,6 +8,7 @@ import yellow.sun.dev.weather.base.BaseActivity
 import yellow.sun.dev.weather.databinding.ActivityMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import yellow.sun.dev.weather.ui.fragment.WeatherFragment
+import yellow.sun.dev.weather.utils.L
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -24,6 +26,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         initViewModel()
         initViewPager()
+
+        handleDeepLink()
+    }
+
+    private fun handleDeepLink() {
+        val deepLink: Uri? = intent.data
+        L.d("handleDeepLink deepLink = $deepLink")
+
+        val age = deepLink?.getQueryParameter("age") ?: ""
+        val name = deepLink?.getQueryParameter("name") ?: ""
+
+        L.d("handleDeepLink age = $age , name = $name")
     }
 
     /**
