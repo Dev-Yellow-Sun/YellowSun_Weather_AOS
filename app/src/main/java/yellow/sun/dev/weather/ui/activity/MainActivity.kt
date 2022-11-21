@@ -1,5 +1,6 @@
 package yellow.sun.dev.weather.ui.activity
 
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -28,8 +29,25 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         initViewPager()
 
         handleDeepLink()
+        testSharedPreference()
     }
 
+
+    private fun testSharedPreference() {
+        val sharedPreference = getSharedPreferences("myName", MODE_PRIVATE)
+        L.d("testSharedPreference name : ${sharedPreference.getString("name", "No Data!")}")
+        val editor: SharedPreferences.Editor = sharedPreference.edit()
+        editor.putString("name", "KIU")
+
+        editor.commit()
+
+
+        L.d("testSharedPreference name : ${sharedPreference.getString("name", "No Data!")}")
+    }
+
+    /**
+     * DeepLink 데이터 수신
+     */
     private fun handleDeepLink() {
         val deepLink: Uri? = intent.data
         L.d("handleDeepLink deepLink = $deepLink")

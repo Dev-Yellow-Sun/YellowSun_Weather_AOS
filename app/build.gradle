@@ -86,6 +86,7 @@ dependencies {
     // stetho
     implementation 'com.facebook.stetho:stetho:1.6.0'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.6.0'
+    implementation 'com.facebook.stetho:stetho-urlconnection:1.6.0'
     // logger
     implementation 'com.orhanobut:logger:2.2.0'
     // splash

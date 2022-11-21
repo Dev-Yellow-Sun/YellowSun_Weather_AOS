@@ -163,7 +163,7 @@ class WeatherFragment: BaseFragment<FragmentWeatherBinding>() {
 
         with(viewModel) {
 
-            isLoading.observe((activity as BaseActivity<*>)) {
+            isLoading.observe(viewLifecycleOwner) {
                 if (it){
                     (activity as BaseActivity<*>).showLoading()
                     return@observe
@@ -171,11 +171,11 @@ class WeatherFragment: BaseFragment<FragmentWeatherBinding>() {
                 (activity as BaseActivity<*>).hideLoading()
             }
 
-            showError.observe((activity as BaseActivity<*>)) {
+            showError.observe(viewLifecycleOwner) {
                 it.toast((activity as BaseActivity<*>))
             }
 
-            weatherNowJson.observe((activity as BaseActivity<*>)) {
+            weatherNowJson.observe(viewLifecycleOwner) {
                 L.d("weatherNowJson observe : $it")
 
 //                var tpm = ""
@@ -190,7 +190,7 @@ class WeatherFragment: BaseFragment<FragmentWeatherBinding>() {
 
             }
 
-            weatherRightNowJson.observe((activity as BaseActivity<*>)) {
+            weatherRightNowJson.observe(viewLifecycleOwner) {
                 L.d("weatherRightNowJson observe : $it")
                 "Ultra Success".toast((activity as BaseActivity<*>))
 
@@ -209,11 +209,11 @@ class WeatherFragment: BaseFragment<FragmentWeatherBinding>() {
 
             }
 
-            weatherMidTaJson.observe((activity as BaseActivity<*>)) {
+            weatherMidTaJson.observe(viewLifecycleOwner) {
                 L.d("weatherWeekJson observe : $it")
             }
 
-            localWeatherNowDataList.observe((activity as BaseActivity<*>)) {
+            localWeatherNowDataList.observe(viewLifecycleOwner) {
                 L.d("localWeatherData observe : $it")
                 this@WeatherFragment.localWeatherNowDataList.clear()
                 this@WeatherFragment.localWeatherNowDataList.addAll(it)
@@ -255,11 +255,11 @@ class WeatherFragment: BaseFragment<FragmentWeatherBinding>() {
                 weatherTimeLineAdapter.value.changeItemList(timeLineList)
             }
 
-            weatherMidTaJson.observe((activity as BaseActivity<*>)) {
+            weatherMidTaJson.observe(viewLifecycleOwner) {
                 L.d("weatherMidTaJson observe : $it")
             }
 
-            weatherMidFcstJson.observe((activity as BaseActivity<*>)) {
+            weatherMidFcstJson.observe(viewLifecycleOwner) {
                 L.d("weatherMidFcstJson observe : $it")
             }
         }
