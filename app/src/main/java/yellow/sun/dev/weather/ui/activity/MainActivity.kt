@@ -1,6 +1,7 @@
 package yellow.sun.dev.weather.ui.activity
 
 import android.content.SharedPreferences
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -30,6 +31,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         handleDeepLink()
         testSharedPreference()
+
+        binding.tv2.setOnClickListener {
+            val uri = Uri.parse("https://instagram.com/")
+            val i = Intent(Intent.ACTION_VIEW, uri)
+            i.setPackage("com.instagram.android")
+            startActivity(i)
+        }
     }
 
 
@@ -50,12 +58,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      */
     private fun handleDeepLink() {
         val deepLink: Uri? = intent.data
-        L.d("handleDeepLink deepLink = $deepLink")
+        L.d("handleDeepLink deepLink : $deepLink")
 
         val age = deepLink?.getQueryParameter("age") ?: ""
         val name = deepLink?.getQueryParameter("name") ?: ""
 
-        L.d("handleDeepLink age = $age , name = $name")
+        L.d("handleDeepLink age : $age")
+        L.d("handleDeepLink name : $name")
     }
 
     /**

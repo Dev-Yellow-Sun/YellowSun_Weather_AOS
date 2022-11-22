@@ -60,7 +60,7 @@ object NetworkModule {
 
             okHttpClientBuilder
                 .addInterceptor(httpLoggingInterceptor)
-                .addInterceptor(OkHttpProfilerInterceptor())    // OkHttp Profiler
+//                .addInterceptor(OkHttpProfilerInterceptor())    // OkHttp Profiler
                 .addNetworkInterceptor(StethoInterceptor()) // Stetho 로그
         }
 
