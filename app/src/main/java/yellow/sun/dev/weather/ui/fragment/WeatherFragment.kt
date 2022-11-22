@@ -14,10 +14,10 @@ class WeatherFragment: BaseFragment<FragmentWeatherBinding>() {
 
     companion object {
         const val KEY = "key"
-        fun newInstance(data: String): WeatherFragment = WeatherFragment().apply {
+        fun newInstance(): WeatherFragment = WeatherFragment().apply {
             arguments = Bundle().apply {
                 val args = Bundle()
-                args.putString(KEY, data)
+//                args.putString(KEY, data)
                 arguments = args
 
             }

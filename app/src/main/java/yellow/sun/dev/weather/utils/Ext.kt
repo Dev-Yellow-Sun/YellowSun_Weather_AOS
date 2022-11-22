@@ -259,68 +259,68 @@ fun String.getYesterday() : String {
 
 ////////////////////////////// ImageView //////////////////////////////
 
-//fun ImageView.load(url: String): ImageView {
-//    if (url.isNotEmpty()) {
-//        GlideApp.with(context)
-//            .load(url)
-//            .transition(DrawableTransitionOptions.withCrossFade())
-//            .into(this)
-//    }
-//    return this
-//}
-//
-//fun ImageView.loadRound(url: String, round: Int): ImageView {
-//    if (url.isNotEmpty()) {
-//        GlideApp.with(context)
-//            .load(url)
-//            .transform(CenterCrop(), RoundedCorners(round.dp2px))
-//            .transition(DrawableTransitionOptions.withCrossFade())
-//            .into(this)
-//    }
-//    return this
-//}
-//
-//fun ImageView.loadRound(drawable: Drawable, round: Int): ImageView {
-//    GlideApp.with(context)
-//        .load(drawable)
-//        .transform(CenterCrop(), RoundedCorners(round.dp2px))
-//        .transition(DrawableTransitionOptions.withCrossFade())
-//        .into(this)
-//    return this
-//}
-//
-//fun ImageView.loadRoundTop(url: String, round: Int): ImageView {
-//    if (url.isNotEmpty()) {
-//        GlideApp.with(context)
-//            .load(url)
-//            .transform(CenterCrop(), RoundedCornersTransformation(round.dp2px, 0, RoundedCornersTransformation.CornerType.TOP))
-//            .transition(DrawableTransitionOptions.withCrossFade())
-//            .into(this)
-//    }
-//    return this
-//}
-//
-//fun ImageView.loadCircle(url: String): ImageView {
-//    if (url.isNotEmpty()) {
-//        GlideApp.with(context)
-//            .load(url)
-//            .apply(RequestOptions().circleCrop())
-//            .transition(DrawableTransitionOptions.withCrossFade())
-//            .into(this)
-//    }
-//    return this
-//}
-//
-//fun ImageView.loadCircle(d: Drawable?): ImageView {
-//    d?.let {
-//        GlideApp.with(context)
-//            .load(d)
-//            .apply(RequestOptions().circleCrop())
-//            .transition(DrawableTransitionOptions.withCrossFade())
-//            .into(this)
-//    }
-//    return this
-//}
+fun ImageView.load(url: String): ImageView {
+    if (url.isNotEmpty()) {
+        GlideApp.with(context)
+            .load(url)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+    }
+    return this
+}
+
+fun ImageView.loadRound(url: String, round: Int): ImageView {
+    if (url.isNotEmpty()) {
+        GlideApp.with(context)
+            .load(url)
+            .transform(CenterCrop(), RoundedCorners(round.dp2px))
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+    }
+    return this
+}
+
+fun ImageView.loadRound(drawable: Drawable, round: Int): ImageView {
+    GlideApp.with(context)
+        .load(drawable)
+        .transform(CenterCrop(), RoundedCorners(round.dp2px))
+        .transition(DrawableTransitionOptions.withCrossFade())
+        .into(this)
+    return this
+}
+
+fun ImageView.loadRoundTop(url: String, round: Int): ImageView {
+    if (url.isNotEmpty()) {
+        GlideApp.with(context)
+            .load(url)
+            .transform(CenterCrop(), RoundedCornersTransformation(round.dp2px, 0, RoundedCornersTransformation.CornerType.TOP))
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+    }
+    return this
+}
+
+fun ImageView.loadCircle(url: String): ImageView {
+    if (url.isNotEmpty()) {
+        GlideApp.with(context)
+            .load(url)
+            .apply(RequestOptions().circleCrop())
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+    }
+    return this
+}
+
+fun ImageView.loadCircle(d: Drawable?): ImageView {
+    d?.let {
+        GlideApp.with(context)
+            .load(d)
+            .apply(RequestOptions().circleCrop())
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+    }
+    return this
+}
 
 ////////////////////////////// Int //////////////////////////////
 
