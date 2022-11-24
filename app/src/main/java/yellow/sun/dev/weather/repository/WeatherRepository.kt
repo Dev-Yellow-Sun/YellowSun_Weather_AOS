@@ -1,12 +1,19 @@
 package yellow.sun.dev.weather.repository
 
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import yellow.sun.dev.weather.config.C
 import yellow.sun.dev.weather.data.BasicApi
 import yellow.sun.dev.weather.data.local.dao.WeatherNowDao
 import yellow.sun.dev.weather.data.local.weather.now.WeatherNow
+import yellow.sun.dev.weather.utils.asJsonArray
+import yellow.sun.dev.weather.utils.asJsonObject
+import yellow.sun.dev.weather.utils.asString
 import javax.inject.Inject
 
 class WeatherRepository @Inject constructor(
@@ -28,12 +35,17 @@ class WeatherRepository @Inject constructor(
     fun getNow(
         params: Map<String, Any?> = mapOf(),
         header: Map<String, Any?> = mapOf()
-    ): Flowable<JsonObject> {
+    ): Flowable<JsonArray> {
         return basicApi.getApi(
             url = C.WeatherApi.WEATHER_NOW,
             params,
             header
         )
+            .subscribeOn(Schedulers.io())
+            .filter(::isWeatherSuccess)
+            .flatMap(::getNowWeatherItemList)
+            .filter(::filterNowWeather)
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     /**
@@ -122,4 +134,62 @@ class WeatherRepository @Inject constructor(
      */
     fun deleteLocalWeatherData(vararg weatherNow: WeatherNow): Completable =
         weatherNowDao.deleteWeatherData(*weatherNow)
+
+
+    /**
+     *
+     */
+    private fun filterNowWeather(data: JsonArray): Boolean {
+
+        return true
+    }
+
+    private fun getNowWeatherItemList(data: JsonObject): Flowable<JsonArray> =
+        Flowable
+            .fromArray(
+                data.asJsonObject("response")
+                    .asJsonObject("body")
+                    .asJsonObject("items")
+                    .asJsonArray("item")
+            )
+            .subscribeOn(Schedulers.io())
+            .doOnError {
+
+            }
+            .doOnNext {
+
+            }
+            .doFinally {
+
+            }
+
+    /**
+     * 기상청 Api ResultCode
+     * @param data  json data
+     * @return 00:정상, 01:어플리케이션 에러, 02:DB에러, 03:데이터 없음,
+     * 04:HTTP에러, 05:서비스 연결 실패, 10:잘못된 요청 파라미터, 11:필수요청 에러,
+     * 20:서비스 접근 거부, 21:사용할 수 없는 키, 22:서비스 요청제한 횟수 초과,
+     * 30:등록되지 않은 키, 31:기한만료된 키, 32:등록되지 않은 IP, 33: 서명하지 않은 호출
+     * 99:기타
+     */
+    private fun isWeatherSuccess(data: JsonObject): Boolean {
+        val resultCode: String = try {
+            data.asJsonObject("response")
+                .asJsonObject("header")
+                .asString("resultCode")
+        } catch (e: Exception) {
+            ""
+        }
+
+        if (resultCode == "00") {
+            return true
+        } else {
+//            _showError.postValue(
+//                data.asJsonObject("response")
+//                    .asJsonObject("header")
+//                    .asString("resultMsg")
+//            )
+            return false
+        }
+    }
 }
