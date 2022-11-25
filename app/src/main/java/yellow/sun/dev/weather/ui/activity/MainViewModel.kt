@@ -2,14 +2,17 @@ package yellow.sun.dev.weather.ui.activity
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.JsonArray
 import com.google.gson.JsonElement
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.schedulers.Schedulers
 import yellow.sun.dev.weather.base.BaseViewModel
 import yellow.sun.dev.weather.data.local.weather.now.WeatherNow
 import yellow.sun.dev.weather.repository.WeatherRepository
+import yellow.sun.dev.weather.utils.L
 import javax.inject.Inject
 
-
+@HiltViewModel
 class MainViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository
 ): BaseViewModel() {
@@ -20,8 +23,8 @@ class MainViewModel @Inject constructor(
     private val _showError = MutableLiveData<String>()
     val showError : LiveData<String> get() = _showError
 
-    private val _weatherNowJson = MutableLiveData<List<JsonElement>>()
-    val weatherNowJson : LiveData<List<JsonElement>> get() = _weatherNowJson
+    private val _weatherNowJson = MutableLiveData<JsonArray>()
+    val weatherNowJson : LiveData<JsonArray> get() = _weatherNowJson
 
     private val _weatherRightNowJson = MutableLiveData<List<JsonElement>>()
     val weatherRightNowJson : LiveData<List<JsonElement>> get() = _weatherRightNowJson
@@ -67,13 +70,15 @@ class MainViewModel @Inject constructor(
                 params = params
             )
                 .doOnError { e ->
-
+                    L.d("getNowWeather doOnError : $e")
                 }
                 .doOnNext { data ->
+                    L.d("getNowWeather doOnNext data : $data")
+                    _weatherNowJson.postValue(data)
 
                 }
                 .doFinally {
-
+                    _isLoading.postValue(false)
                 }
                 .subscribe()
         )

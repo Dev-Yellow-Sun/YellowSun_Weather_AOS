@@ -20,6 +20,7 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import yellow.sun.dev.weather.base.BaseActivity
+import yellow.sun.dev.weather.di.GlideApp
 import java.text.SimpleDateFormat
 import java.util.*
 

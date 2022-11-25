@@ -10,7 +10,7 @@ import yellow.sun.dev.weather.ui.activity.MainViewModel
 class WeatherFragment: BaseFragment<FragmentWeatherBinding>() {
     override val layoutId: Int = R.layout.fragment_weather
 
-    private val viewModel by activityViewModels<MainViewModel>()
+//    private val viewModel by activityViewModels<MainViewModel>()
 
     companion object {
         const val KEY = "key"
