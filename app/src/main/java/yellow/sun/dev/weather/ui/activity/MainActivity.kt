@@ -27,6 +27,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             C.WeatherData.Location.Seoul["ny"] ?: ""
         )
 
+        viewModel.bindsTest("Hilt Binds")
     }
 
     /**

@@ -4,8 +4,9 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import yellow.sun.dev.weather.data.local.dao.WidgetIdDao
 import yellow.sun.dev.weather.data.local.widget.WidgetId
+import javax.inject.Inject
 
-class WidgetIdRepository(
+class WidgetIdRepository @Inject constructor(
     private val widgetIdDao: WidgetIdDao
 ) {
 

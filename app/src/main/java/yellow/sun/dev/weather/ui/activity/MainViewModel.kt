@@ -8,13 +8,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.schedulers.Schedulers
 import yellow.sun.dev.weather.base.BaseViewModel
 import yellow.sun.dev.weather.data.local.weather.now.WeatherNow
-import yellow.sun.dev.weather.repository.WeatherRepository
+import yellow.sun.dev.weather.data.repository.MyServiceRepository
+import yellow.sun.dev.weather.data.repository.WeatherRepository
 import yellow.sun.dev.weather.utils.L
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val weatherRepository: WeatherRepository
+    private val weatherRepository: WeatherRepository,
+    private val myServiceRepository: MyService
 ): BaseViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
@@ -42,6 +44,10 @@ class MainViewModel @Inject constructor(
         NOW, // 단기 예보
         RIGHT_NOW, // 초단기 예보
         MID
+    }
+
+    fun bindsTest(str: String) {
+        myServiceRepository.getMyMethods(str)
     }
 
     /**
