@@ -10,6 +10,7 @@ import yellow.sun.dev.weather.config.C
 import yellow.sun.dev.weather.data.BasicApi
 import yellow.sun.dev.weather.data.local.dao.WeatherNowDao
 import yellow.sun.dev.weather.data.local.weather.now.WeatherNow
+import yellow.sun.dev.weather.utils.L
 import yellow.sun.dev.weather.utils.asJsonArray
 import yellow.sun.dev.weather.utils.asJsonObject
 import yellow.sun.dev.weather.utils.asString
@@ -19,6 +20,10 @@ class WeatherRepository @Inject constructor(
     private val baseApi: BasicApi,
     private val weatherNowDao: WeatherNowDao
 ) {
+
+    fun testLog() {
+        L.d("@@@@ WeatherRepository testLog")
+    }
 
     /**
      * 기상청 단기 예보 정보 (1일 8회)
